@@ -1,0 +1,71 @@
+﻿import { useState } from 'react';
+import '../App.css';
+
+function Navbar() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  return (
+    <header className="site-navbar">
+      <div className="navbar-left">
+        <div className="brand-copy-only">
+          <img src="/logo.png" alt="UNIX logo" className="brand-logo" />
+          
+        </div>
+      </div>
+
+      <nav className="navbar-center" aria-label="Primary navigation">
+        <a href="#buy">Buy</a>
+        <a href="#rent">Rent</a>
+        <a href="#sell">Sell</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div className="navbar-right">
+        <button className="icon-button icon-outline" type="button" aria-label="Wishlist">
+          <svg width="18" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M12.001 21s-7.5-4.872-9.5-7.25C-0.057 9.3 3.3 4 8.5 4 10.9 4 12.001 6 12.001 6s1.101-2 3.5-2c5.2 0 8.557 5.3 5.999 9.75C19.501 16.128 12.001 21 12.001 21z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        <div
+          className={`account-menu ${dropdownOpen ? 'open' : ''}`}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setDropdownOpen(false);
+            }
+          }}
+        >
+          <button
+            className="account-button"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded={dropdownOpen}
+            onClick={() => setDropdownOpen((value) => !value)}
+          >
+            <svg className="user-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <circle cx="12" cy="8" r="3.2" stroke="currentColor" strokeWidth="1.8" />
+              <path d="M4.5 20c1.6-3 5-5 7.5-5s5.9 2 7.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>Account</span>
+          </button>
+
+          <div className="account-dropdown">
+            <a className="dropdown-item" href="#signup">Sign up</a>
+            <a className="dropdown-item" href="#login">Login</a>
+          </div>
+        </div>
+        
+          <button className="icon-button icon-outline" type="button" aria-label="Cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <path d="M3 3h2l1.7 8.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="10" cy="20" r="1.5" fill="currentColor" />
+              <circle cx="18" cy="20" r="1.5" fill="currentColor" />
+            </svg>
+          </button>
+      </div>
+    </header>
+  );
+}
+
+export default Navbar

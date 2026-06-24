@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import '../components/Productpage/Productpage.css';
 import FilterBar from '../components/Productpage/FilterBar';
 import ProductGrid from '../components/Productpage/ProductGrid';
+import ProductDetail from '../components/Productpage/ProductDetail';
 
 const rentalData = [
   {
@@ -108,6 +109,7 @@ function RentPage() {
   const [selectedTransmission, setSelectedTransmission] = useState('all');
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [selectedSort, setSelectedSort] = useState('Newest');
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     document.title = 'UNIX | Rent';
@@ -147,6 +149,37 @@ function RentPage() {
     return items;
   }, [searchText, selectedBody, selectedTransmission, selectedLocation, selectedSort]);
 
+  if (selectedProduct) {
+    return (
+      <main className="site-main">
+        <button
+          onClick={() => setSelectedProduct(null)}
+          style={{
+            position: 'relative',
+            top: '1rem',
+            left: '1.5rem',
+            background: 'none',
+            border: 'none',
+            color: 'var(--purple-600)',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            fontWeight: '700',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0',
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back to rentals
+        </button>
+        <ProductDetail product={selectedProduct} rentMode />
+      </main>
+    );
+  }
+
   return (
     <main className="site-main">
       <section className="buy-section">
@@ -174,7 +207,7 @@ function RentPage() {
           onSortChange={setSelectedSort}
         />
 
-        <ProductGrid products={filteredProducts} hideButton />
+        <ProductGrid products={filteredProducts} hideButton onProductClick={setSelectedProduct} />
       </section>
     </main>
   );

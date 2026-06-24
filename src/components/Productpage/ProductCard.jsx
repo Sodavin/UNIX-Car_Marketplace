@@ -1,11 +1,26 @@
 ﻿import './Productpage.css';
 
-function ProductCard({ product, hideButton }) {
+function ProductCard({ product, hideButton, onProductClick }) {
   const formattedPrice = product.price.toLocaleString();
   const formattedMonthlyPrice = product.monthlyPrice?.toLocaleString();
 
+  const handleCardClick = (e) => {
+    // Don't trigger if clicking on action buttons
+    if (e.target.closest('.media-actions')) return;
+    if (onProductClick) {
+      onProductClick(product);
+    }
+  };
+
+  const handleBuyClick = (e) => {
+    e.stopPropagation();
+    if (onProductClick) {
+      onProductClick(product);
+    }
+  };
+
   return (
-    <article className="product-card">
+    <article className="product-card" onClick={handleCardClick} style={{ cursor: onProductClick ? 'pointer' : 'default' }}>
       <div className="product-card-media">
         <img
           src={product.image}
@@ -107,7 +122,7 @@ function ProductCard({ product, hideButton }) {
               ) : null}
             </div>
             {!hideButton && (
-              <button type="button" className="product-button">
+              <button type="button" className="product-button" onClick={handleBuyClick}>
                 Buy now
               </button>
             )}

@@ -1,7 +1,7 @@
 ﻿import ProductCard from './ProductCard';
 import './Productpage.css';
 
-function ProductGrid({ products, hideButton }) {
+function ProductGrid({ products, hideButton, onProductClick }) {
   if (!products.length) {
     return (
       <div className="product-empty-state">
@@ -13,7 +13,7 @@ function ProductGrid({ products, hideButton }) {
   return (
     <div className="product-grid">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} hideButton={hideButton} />
+        <ProductCard key={product.id} product={product} hideButton={hideButton} onProductClick={onProductClick} />
       ))}
     </div>
   );

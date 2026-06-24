@@ -1,4 +1,5 @@
 ﻿import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 function Navbar() {
@@ -8,17 +9,18 @@ function Navbar() {
     <header className="site-navbar">
       <div className="navbar-left">
         <div className="brand-copy-only">
-          <img src="/logo.png" alt="UNIX logo" className="brand-logo" />
-          
+          <Link to="/home" className="brand-link">
+            <img src="/logo.png" alt="UNIX logo" className="brand-logo" />
+          </Link>
         </div>
       </div>
 
       <nav className="navbar-center" aria-label="Primary navigation">
-        <a href="#buy">Buy</a>
-        <a href="#rent">Rent</a>
-        <a href="#sell">Sell</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <Link to="/home">Home</Link>
+        <Link to="/buy">Buy</Link>
+        <Link to="/rent">Rent</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
       </nav>
 
       <div className="navbar-right">

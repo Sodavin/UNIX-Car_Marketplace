@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import '../components/Productpage/Productpage.css';
 import FilterBar from '../components/Productpage/FilterBar';
 import ProductGrid from '../components/Productpage/ProductGrid';
@@ -108,6 +108,10 @@ function RentPage() {
   const [selectedTransmission, setSelectedTransmission] = useState('all');
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [selectedSort, setSelectedSort] = useState('Newest');
+
+  useEffect(() => {
+    document.title = 'UNIX | Rent';
+  }, []);
 
   const filteredProducts = useMemo(() => {
     let items = rentalData.filter((product) => {

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import '../components/Productpage/Productpage.css';
 import FilterBar from '../components/Productpage/FilterBar';
 import ProductGrid from '../components/Productpage/ProductGrid';
@@ -94,12 +94,62 @@ const productData = [
     views: 12,
     image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
   },
-];
+  {
+    id: 'p7',
+    make: 'BMW',
+    name: '3 Series',
+    year: 2024,
+    price: 62000,
+    mileage: '3,800',
+    fuel: 'Petrol',
+    bodyType: 'Sedan',
+    transmission: 'Automatic',
+    sellerType: 'Premium Dealer',
+    location: 'Phnom Penh',
+    views: 21,
+    image: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'p8',
+    make: 'Audi',
+    name: 'A6',
+    year: 2025,
+    price: 108900,
+    mileage: '1,900',
+    fuel: 'Diesel',
+    bodyType: 'Sedan',
+    transmission: 'Automatic',
+    sellerType: 'Exclusive Dealer',
+    location: 'Phnom Penh',
+    views: 12,
+    image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'p9',
+    make: 'BMW',
+    name: '3 Series',
+    year: 2024,
+    price: 62000,
+    mileage: '3,800',
+    fuel: 'Petrol',
+    bodyType: 'Sedan',
+    transmission: 'Automatic',
+    sellerType: 'Premium Dealer',
+    location: 'Phnom Penh',
+    views: 21,
+    image: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=800&q=80',
+  },
+]
+  
 
 function BuyPage() {
   const [searchText, setSearchText] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('all');
   const [selectedSort, setSelectedSort] = useState('Newest');
+
+  useEffect(() => {
+    document.title = 'UNIX | Buy';
+  }, []);
 
   const filteredProducts = useMemo(() => {
     let items = productData.filter((product) => {

@@ -2,6 +2,9 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import BackToTop from './components/Backtotop';
+import ScrollToTop from './components/ScrollToTop';
+import Homepage from './pages/Homepage';
 import BuyPage from './pages/BuyPage';
 import RentPage from './pages/RentPage';
 import AboutPage from './pages/AboutPage';
@@ -11,9 +14,11 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <ScrollToTop />
 
       <Routes>
-        <Route path="/" element={<Navigate to="/buy" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/home" element={<Homepage />} />
         <Route path="/buy" element={<BuyPage />} />
         <Route path="/rent" element={<RentPage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -21,6 +26,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 }

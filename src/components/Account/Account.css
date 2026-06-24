@@ -1,0 +1,197 @@
+:root {
+  --account-bg: rgba(255, 255, 255, 0.05);
+  --account-panel: rgba(255, 255, 255, 0.08);
+  --account-border: rgba(255, 255, 255, 0.14);
+  --account-strong: #ffffff;
+  --account-muted: #c2c7e0;
+  --account-primary: #8b6dff;
+  --account-primary-soft: rgba(139, 109, 255, 0.14);
+  --account-surface: rgba(255, 255, 255, 0.06);
+}
+
+.account-page {
+  min-height: calc(100vh - 110px);
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+  background: radial-gradient(circle at top left, rgba(139, 109, 255, 0.16), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(68, 46, 177, 0.18), transparent 22%),
+    linear-gradient(180deg, rgba(5, 4, 10, 1) 0%, rgba(8, 7, 18, 1) 100%);
+}
+
+.account-panel {
+  width: min(100%, 560px);
+  display: grid;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-radius: 28px;
+  background: var(--account-bg);
+  border: 1px solid var(--account-border);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.account-hero-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--account-primary);
+  font-weight: 700;
+}
+
+.account-hero-panel h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.4vw, 2.8rem);
+  line-height: 1.05;
+  color: var(--account-strong);
+}
+
+.account-copy {
+  margin: 1rem 0 0;
+  max-width: 520px;
+  line-height: 1.8;
+  color: var(--account-muted);
+}
+
+.account-cta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.account-cta-strip span {
+  color: var(--account-muted);
+  font-weight: 500;
+}
+
+.account-ghost-btn,
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.account-ghost-btn {
+  color: var(--account-primary);
+  border: 1px solid var(--account-primary);
+  background: transparent;
+}
+
+.account-ghost-btn:hover {
+  background: rgba(139, 109, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.account-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.field-group {
+  display: grid;
+  gap: 0.65rem;
+  color: var(--account-strong);
+}
+
+.field-group span {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.field-group input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--account-surface);
+  color: var(--account-strong);
+  border-radius: 16px;
+  padding: 1rem 1.15rem;
+  font-size: 1rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.field-group input:focus {
+  outline: none;
+  border-color: rgba(139, 109, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(139, 109, 255, 0.12);
+}
+
+.account-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--account-muted);
+  font-size: 0.95rem;
+}
+
+.checkbox-field input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--account-primary);
+}
+
+.text-link {
+  color: var(--account-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--account-primary), #5c4add);
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 18px 40px rgba(92, 74, 221, 0.24);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 840px) {
+  .account-panel {
+    padding: 2rem;
+  }
+
+  .account-hero-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .account-cta-strip {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 560px) {
+  .account-form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

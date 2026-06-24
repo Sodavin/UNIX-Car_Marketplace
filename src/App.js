@@ -9,6 +9,8 @@ import BuyPage from './pages/BuyPage';
 import RentPage from './pages/RentPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import Login from './components/Account/Login';
+import Signup from './components/Account/Signup';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/rent" element={<RentPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
 
       <Footer />

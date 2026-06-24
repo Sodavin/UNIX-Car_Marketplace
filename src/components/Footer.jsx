@@ -43,7 +43,8 @@ function Footer() {
           <p className="footer-heading">COMPANY</p>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
-          <a href="#login">Login</a>
+          <Link to="/signup">Signup</Link>
+          <Link to="/login">Login</Link>
         </div>
 
         <div className="footer-column footer-contact">

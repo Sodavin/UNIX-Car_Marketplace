@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-function ContactPage() {
+function Homepage() {
   useEffect(() => {
-    document.title = 'UNIX | Contact';
+    document.title = 'UNIX | Home';
   }, []);
 
   return (
@@ -11,4 +11,4 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+export default Homepage;

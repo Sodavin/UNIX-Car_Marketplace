@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../Checkout/Cart';
 import ProductGrid from '../Productpage/ProductGrid';
 import '../Productpage/Productpage.css';
 import './HomepageSections.css';
@@ -74,12 +73,9 @@ const rentalCars = [
 
 export default function RentalCars() {
   const navigate = useNavigate();
-  const { addItem } = useCart();
 
   const handleRentalCheckout = () => {
-    const product = rentalCars[0];
-    addItem(product, 1);
-    navigate('/checkout');
+    navigate('/rent');
   };
 
   return (

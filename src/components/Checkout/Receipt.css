@@ -173,6 +173,19 @@
     color: #999;
     font-size: 14px;
 }
+.desc-source {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.12);
+    width: fit-content;
+}
 
 /*total*/
 .table-footer {

@@ -47,9 +47,10 @@ export default function CartDrawer({ open, onClose }) {
                     <div className="item-meta">
                       <h3>{item.name}</h3>
                       <p>{item.make} · {item.year}</p>
+                      <span className="item-source">{item.source || 'Buy'}</span>
                     </div>
                     <div className="item-price">${Number(item.price).toLocaleString()}</div>
-                  </div>
+                  </div> 
                   <div className="item-controls">
                     <div className="quantity-control">
                       <button type="button" onClick={() => addItem(item, -1)} disabled={Number(item.quantity || 1) <= 1}>

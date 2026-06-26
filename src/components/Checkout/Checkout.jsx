@@ -8,7 +8,7 @@ import "./Checkout.css";
 export default function Checkout() {
   const navigate = useNavigate();
 
-  const { items: cartItems, addItem, removeItem, clearCart } = useCart();
+  const { items: cartItems, addItem, clearCart } = useCart();
 
   const [payment, setPayment] = useState("ABA PAY");
   const [contact, setContact] = useState("Phone");
@@ -164,6 +164,7 @@ export default function Checkout() {
                   <div className="product-meta">
                     <div className="product-title">
                       <h3>{item.name}</h3>
+                      <span className="product-source">{item.source || 'Buy'}</span>
                       <span className="product-quantity">Qty {item.quantity || 1}</span>
                     </div>
                     <p className="product-price">${Number(item.price).toLocaleString()}</p>

@@ -132,6 +132,17 @@
   margin: 0;
   font-size: 1rem;
 }
+.product-source {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(139, 92, 246, 0.16);
+  color: #d8b4fe;
+}
 .product-quantity {
   color: #94a3b8;
   font-size: 0.9rem;

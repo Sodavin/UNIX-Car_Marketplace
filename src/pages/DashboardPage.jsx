@@ -23,13 +23,116 @@ const wishlistCars = [
 
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [garageCars, setGarageCars] = useState(sampleCars);
+  const [modalType, setModalType] = useState(null);
+  const [selectedCar, setSelectedCar] = useState(null);
+  const [formData, setFormData] = useState({
+    id: null,
+    name: '',
+    price: '',
+    year: '',
+    make: '',
+    model: '',
+    status: 'live',
+    image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
+  });
+
+  const emptyCarForm = {
+    id: null,
+    name: '',
+    price: '',
+    year: '',
+    make: '',
+    model: '',
+    status: 'live',
+    image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
+  };
+
+  const openAddModal = () => {
+    setSelectedCar(null);
+    setFormData(emptyCarForm);
+    setModalType('add');
+  };
+
+  const openViewModal = (car) => {
+    setSelectedCar(car);
+    setModalType('view');
+  };
+
+  const openEditModal = (car) => {
+    setSelectedCar(car);
+    setFormData({
+      id: car.id,
+      name: car.name,
+      price: car.price,
+      year: car.year,
+      make: car.make,
+      model: car.model,
+      status: car.status,
+      image: car.image,
+    });
+    setModalType('edit');
+  };
+
+  const closeModal = () => {
+    setModalType(null);
+    setSelectedCar(null);
+  };
+
+  const handleDeleteCar = (carId) => {
+    setGarageCars((prevState) => prevState.filter((car) => car.id !== carId));
+    if (selectedCar?.id === carId) {
+      closeModal();
+    }
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveEdit = () => {
+    setGarageCars((prevState) =>
+      prevState.map((car) =>
+        car.id === formData.id ? { ...car, ...formData } : car
+      )
+    );
+    closeModal();
+  };
+
+  const handleAddCar = () => {
+    const newCar = {
+      ...formData,
+      id: Date.now(),
+      image:
+        formData.image ||
+        'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
+    };
+    setGarageCars((prevState) => [newCar, ...prevState]);
+    closeModal();
+  };
 
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':
         return <OverviewContent />;
       case 'garage':
-        return <GarageContent />;
+        return (
+          <GarageContent
+            garageCars={garageCars}
+            modalType={modalType}
+            selectedCar={selectedCar}
+            formData={formData}
+            openAddModal={openAddModal}
+            openViewModal={openViewModal}
+            openEditModal={openEditModal}
+            handleDeleteCar={handleDeleteCar}
+            handleFormChange={handleFormChange}
+            handleSaveEdit={handleSaveEdit}
+            handleAddCar={handleAddCar}
+            closeModal={closeModal}
+          />
+        );
       case 'messages':
         return <MessagesContent />;
       case 'wishlist':
@@ -178,37 +281,204 @@ const OverviewContent = () => (
   </>
 );
 
-const GarageContent = () => (
-  <div className="tab-pane">
-    <header className="dashboard-header">
-      <div className="header-title">
-        <h1>My Garage</h1>
-        <p>Manage your active vehicle listings.</p>
-      </div>
-      <button className="btn-primary">+ Add New Car</button>
-    </header>
-    
-    <div className="product-cards-grid">
-      {sampleCars.map((car) => (
-        <div key={car.id} className="product-card-item">
-          <div className="product-card-image">
-            <img src={car.image} alt={car.name} />
-            <div className={`product-status ${car.status}`}>{car.status === 'live' ? '● Live' : '● Pending'}</div>
-          </div>
-          <div className="product-card-body">
-            <p className="product-meta">{car.year} {car.make}</p>
-            <h3 className="product-name">{car.model}</h3>
-            <p className="product-price">{car.price}</p>
-            <div className="product-actions">
-              <button className="btn-outline">Edit</button>
-              <button className="btn-outline">View</button>
+const GarageContent = ({
+  garageCars,
+  modalType,
+  selectedCar,
+  formData,
+  openAddModal,
+  openViewModal,
+  openEditModal,
+  handleDeleteCar,
+  handleFormChange,
+  handleSaveEdit,
+  handleAddCar,
+  closeModal,
+}) => {
+  const modalLabel =
+    modalType === 'view'
+      ? 'View Car'
+      : modalType === 'edit'
+      ? 'Edit Car'
+      : 'Add New Car';
+
+  return (
+    <div className="tab-pane">
+      <header className="dashboard-header">
+        <div className="header-title">
+          <h1>My Garage</h1>
+          <p>Manage your active vehicle listings.</p>
+        </div>
+        <button className="btn-primary" onClick={openAddModal}>
+          + Add New Car
+        </button>
+      </header>
+      
+      <div className="product-cards-grid">
+        {garageCars.map((car) => (
+          <div key={car.id} className="product-card-item">
+            <div className="product-card-image">
+              <img src={car.image} alt={car.name} />
+              <div className={`product-status ${car.status}`}>
+                {car.status === 'live' ? '● Live' : '● Pending'}
+              </div>
+            </div>
+            <div className="product-card-body">
+              <p className="product-meta">{car.year} {car.make}</p>
+              <h3 className="product-name">{car.model}</h3>
+              <p className="product-price">{car.price}</p>
+              <div className="product-actions">
+                <button className="btn-outline" onClick={() => openEditModal(car)}>
+                  Edit
+                </button>
+                <button className="btn-outline" onClick={() => openViewModal(car)}>
+                  View
+                </button>
+                <button className="btn-outline" onClick={() => handleDeleteCar(car.id)}>
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
+        ))}
+      </div>
+
+      {modalType && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <p className="eyebrow">Garage</p>
+                <h3>{modalLabel}</h3>
+              </div>
+              <button className="modal-close" onClick={closeModal}>
+                ×
+              </button>
+            </div>
+
+            {modalType === 'view' ? (
+              <div className="modal-view">
+                <img src={selectedCar?.image} alt={selectedCar?.name} />
+                <div className="modal-view-details">
+                  <h4>{selectedCar?.name}</h4>
+                  <div className="modal-field">
+                    <span className="field-label">Make</span>
+                    <span>{selectedCar?.make}</span>
+                  </div>
+                  <div className="modal-field">
+                    <span className="field-label">Model</span>
+                    <span>{selectedCar?.model}</span>
+                  </div>
+                  <div className="modal-field">
+                    <span className="field-label">Year</span>
+                    <span>{selectedCar?.year}</span>
+                  </div>
+                  <div className="modal-field">
+                    <span className="field-label">Price</span>
+                    <span>{selectedCar?.price}</span>
+                  </div>
+                  <div className="modal-field">
+                    <span className="field-label">Status</span>
+                    <span>{selectedCar?.status}</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="modal-form">
+                <div className="form-row">
+                  <label htmlFor="name">Listing name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleFormChange}
+                    placeholder="2024 Lexus RX 350"
+                  />
+                </div>
+                <div className="form-row">
+                  <label htmlFor="make">Make</label>
+                  <input
+                    id="make"
+                    type="text"
+                    name="make"
+                    value={formData.make}
+                    onChange={handleFormChange}
+                    placeholder="Lexus"
+                  />
+                </div>
+                <div className="form-row">
+                  <label htmlFor="model">Model</label>
+                  <input
+                    id="model"
+                    type="text"
+                    name="model"
+                    value={formData.model}
+                    onChange={handleFormChange}
+                    placeholder="RX 350"
+                  />
+                </div>
+                <div className="form-row">
+                  <label htmlFor="year">Year</label>
+                  <input
+                    id="year"
+                    type="number"
+                    name="year"
+                    value={formData.year}
+                    onChange={handleFormChange}
+                    placeholder="2024"
+                  />
+                </div>
+                <div className="form-row">
+                  <label htmlFor="price">Price</label>
+                  <input
+                    id="price"
+                    type="text"
+                    name="price"
+                    value={formData.price}
+                    onChange={handleFormChange}
+                    placeholder="$45,000"
+                  />
+                </div>
+                <div className="form-row">
+                  <label htmlFor="status">Status</label>
+                  <select
+                    id="status"
+                    name="status"
+                    value={formData.status}
+                    onChange={handleFormChange}
+                  >
+                    <option value="live">Live</option>
+                    <option value="pending">Pending</option>
+                  </select>
+                </div>
+                <div className="form-row">
+                  <label htmlFor="image">Photo URL</label>
+                  <input
+                    id="image"
+                    type="text"
+                    name="image"
+                    value={formData.image}
+                    onChange={handleFormChange}
+                    placeholder="Image URL"
+                  />
+                </div>
+                <div className="form-buttons">
+                  <button className="btn-primary" type="button" onClick={modalType === 'edit' ? handleSaveEdit : handleAddCar}>
+                    {modalType === 'edit' ? 'Save Changes' : 'Add Car'}
+                  </button>
+                  <button className="btn-outline" type="button" onClick={closeModal}>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      ))}
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 const MessagesContent = () => (
   <div className="tab-pane">

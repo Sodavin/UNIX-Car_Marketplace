@@ -33,9 +33,9 @@ function ProductDetail({ product, rentMode = false }) {
 
   const handleCheckoutClick = () => {
     if (product) {
-      addItem(product, 1);
+      addItem(product, 1, rentMode ? 'Rent' : 'Buy');
     }
-  };
+  }; 
 
   return (
     <div className="product-detail-container">

@@ -399,6 +399,19 @@ body {
   color: var(--muted);
   font-size: 0.9rem;
 }
+.item-source {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.12);
+  width: fit-content;
+}
 .item-price {
   font-weight: 700;
   color: var(--black);

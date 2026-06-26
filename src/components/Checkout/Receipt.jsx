@@ -32,6 +32,7 @@ export default function Receipt({ orderData, onBackToStore }) {
           price: item.price ?? item.unitPrice ?? item.total_price ?? item.unitPrice ?? 0,
           size: item.size || '',
           color: item.color || '',
+          source: item.source || item.type || 'Buy',
         })),
     paymentMethod: normalizedOrder.payment_method || normalizedOrder.paymentMethod || 'ABA PAY (Scan to Pay)',
     paymentReference: normalizedOrder.paymentReference || normalizedOrder.orderNumber || normalizedOrder.id || '',
@@ -121,7 +122,11 @@ export default function Receipt({ orderData, onBackToStore }) {
                   <div className="col qty">{item.qty}</div>
                   <div className="col desc">
                     <div className="desc-name">{item.name}</div>
-                    <div className="desc-meta">{item.size ? `Size: ${item.size}` : ''} {item.color ? ` • Color: ${item.color}` : ''}</div>
+                    <div className="desc-meta">
+                      {item.size ? `Size: ${item.size}` : ''}
+                      {item.color ? ` • Color: ${item.color}` : ''}
+                    </div>
+                    <div className="desc-source">{item.source}</div>
                   </div>
                   <div className="col unit">${Number(item.price).toFixed(2)}</div>
                   <div className="col amount">${(Number(item.price) * Number(item.qty)).toFixed(2)}</div>

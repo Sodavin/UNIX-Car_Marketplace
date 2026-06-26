@@ -31,8 +31,8 @@ function ProductCard({ product, hideButton, onProductClick }) {
 
   const handleBuyClick = (e) => {
     e.stopPropagation();
-    addItem(product, 1);
-  };
+    addItem(product, 1, 'Buy');
+  }; 
 
   return (
     <article className="product-card" onClick={handleCardClick} style={{ cursor: onProductClick ? 'pointer' : 'default' }}>

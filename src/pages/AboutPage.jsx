@@ -47,10 +47,11 @@ function AboutPage() {
   ];
 
   const team = [
-    { name: 'Yan Vanthorn', role: 'CEO & Founder', image: '👨‍💼' },
-    { name: 'Ty Hongly', role: 'Head of Operations', image: '👩‍💼' },
+    { name: 'Preap Sodavin', role: 'CEO & Founder', image: '👨‍💼' },
+    { name: 'Yan Vanthorn', role: 'CFO', image: '👨‍💼' },
+    { name: 'Ty Hongly', role: 'Head of Operations', image: '👨‍💼' },
     { name: 'Rann Tepitou', role: 'Head of Sales', image: '👨‍💼' },
-    { name: 'Theam Bunlong', role: 'Customer Success Lead', image: '👩‍💼' }
+    { name: 'Theam Bunlong', role: 'Customer Success Lead', image: '👨‍💼' }
   ];
 
   return (

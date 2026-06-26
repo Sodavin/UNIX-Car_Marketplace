@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../Checkout/Cart';
 import ProductGrid from '../Productpage/ProductGrid';
 import '../Productpage/Productpage.css';
 import './HomepageSections.css';
@@ -74,12 +73,9 @@ const featuredCars = [
 
 export default function FeaturedCars() {
   const navigate = useNavigate();
-  const { addItem } = useCart();
 
   const handleFeaturedCheckout = () => {
-    const product = featuredCars[0];
-    addItem(product, 1);
-    navigate('/checkout');
+    navigate('/buy');
   };
 
   return (

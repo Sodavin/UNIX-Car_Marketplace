@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { WishlistContext } from '../context/WishlistContext';
-import ProductDetail from './Productpage/ProductDetail';
-import '../components/Wishlist/Wishlist.css';
+import { WishlistContext } from '../../context/WishlistContext';
+import ProductDetail from '../Productpage/ProductDetail';
+import './Wishlist.css';
 
 function WishlistPage() {
   const { wishlist, removeFromWishlist } = useContext(WishlistContext);

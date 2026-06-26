@@ -412,6 +412,43 @@
   font-size: 1.3rem;
 }
 
+/* Embedded map: centered, responsive, no native border */
+.map-placeholder iframe {
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  height: 380px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  margin: 1rem auto 0;
+  outline: none;
+}
+
+.map-placeholder iframe:focus {
+  outline: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.42);
+}
+
+@media (max-width: 1024px) {
+  .map-placeholder iframe {
+    max-width: 820px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-placeholder iframe {
+    height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-placeholder iframe {
+    height: 240px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .contact-hero {

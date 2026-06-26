@@ -10,7 +10,7 @@ import BuyPage from './pages/BuyPage';
 import RentPage from './pages/RentPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
-import WishlistPage from './components/WishlistPage';
+import WishlistPage from './components/Wishlist/WishlistPage.jsx';
 import Login from './components/Account/Login';
 import Signup from './components/Account/Signup';
 

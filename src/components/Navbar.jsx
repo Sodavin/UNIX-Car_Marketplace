@@ -58,6 +58,7 @@ function Navbar() {
           <div className="account-dropdown">
             <Link className="dropdown-item" to="/signup">Sign up</Link>
             <Link className="dropdown-item" to="/login">Login</Link>
+            <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
           </div>
         </div>
         

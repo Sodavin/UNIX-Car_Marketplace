@@ -65,6 +65,10 @@ function ProductCard({ product, hideButton, onProductClick }) {
           </button>
         </div>
 
+        {product.badge && (
+          <span className="product-card-badge">{product.badge}</span>
+        )}
+
         <span className="media-count">{product.views || 0}</span>
       </div>
 

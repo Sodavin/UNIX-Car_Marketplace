@@ -389,6 +389,21 @@
   gap: 0.65rem;
 }
 
+.product-card-badge {
+  position: absolute;
+  left: 0.9rem;
+  top: 0.9rem;
+  background: rgba(139, 109, 255, 0.95);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  z-index: 2;
+}
+
 .media-action {
   width: 40px;
   height: 40px;

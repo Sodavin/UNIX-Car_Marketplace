@@ -412,7 +412,7 @@
   width: 18px;
   height: 18px;
   margin: 0;
-  transform: translateX(-1px);
+  transform: translateX(-2px);
 }
 
 .media-action:hover {

@@ -251,8 +251,13 @@ function ContactPage() {
       {/* Map Section (Placeholder) */}
       <section className="contact-section map-section">
         <div className="map-placeholder">
-          <p>📍 We're located in Phnom Penh, Cambodia</p>
-          <p>Visit us for a test drive or personal consultation</p>
+          <h2>📍Our Location</h2>
+          <iframe
+            title="UNIX Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.725082606304!2d104.88666231093755!3d11.571555288582294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109519e617fd2ad%3A0xf2d7ba03bf4d9285!2sWestern%20University%20Main%20Campus!5e0!3m2!1sen!2skh!4v1780975837937!5m2!1sen!2skh"
+            loading="lazy"
+            allowFullScreen
+          />
         </div>
       </section>
     </div>

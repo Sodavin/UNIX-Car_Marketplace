@@ -15,7 +15,7 @@
 .wishlist-hero {
   background: linear-gradient(135deg, rgba(139, 109, 255, 0.15) 0%, rgba(181, 158, 255, 0.1) 100%);
   border-bottom: 1px solid var(--card-border);
-  padding: 6rem 1.2rem;
+  padding: 2rem 1.2rem;
   text-align: center;
   margin-top: 2rem;
   border-radius: 16px;
@@ -171,9 +171,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   transition: all 200ms ease;
   z-index: 10;
@@ -186,6 +185,10 @@
 
 .remove-btn svg {
   display: block;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+  transform: translateX(-2px);
 }
 
 /* Card Body */

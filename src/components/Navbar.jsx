@@ -1,9 +1,11 @@
-﻿import { useState } from 'react';
+﻿import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { WishlistContext } from '../context/WishlistContext';
 import '../App.css';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { wishlistCount } = useContext(WishlistContext);
 
   return (
     <header className="site-navbar">
@@ -24,11 +26,12 @@ function Navbar() {
       </nav>
 
       <div className="navbar-right">
-        <button className="icon-button icon-outline" type="button" aria-label="Wishlist">
+        <Link to="/wishlist" className="icon-button icon-outline wishlist-link" aria-label="Wishlist">
           <svg width="18" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
             <path d="M12.001 21s-7.5-4.872-9.5-7.25C-0.057 9.3 3.3 4 8.5 4 10.9 4 12.001 6 12.001 6s1.101-2 3.5-2c5.2 0 8.557 5.3 5.999 9.75C19.501 16.128 12.001 21 12.001 21z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </button>
+          {wishlistCount > 0 && <span className="wishlist-badge">{wishlistCount}</span>}
+        </Link>
 
         <div
           className={`account-menu ${dropdownOpen ? 'open' : ''}`}

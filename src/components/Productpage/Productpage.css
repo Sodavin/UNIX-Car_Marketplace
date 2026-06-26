@@ -420,6 +420,19 @@
   background: white;
 }
 
+.media-action.favorited {
+  background: linear-gradient(135deg, #ff4757 0%, #ee5a6f 100%);
+  border-color: #ff4757;
+  color: white;
+  animation: popOut 300ms ease;
+}
+
+.media-action.favorited:hover {
+  background: linear-gradient(135deg, #ee5a6f 0%, #ff4757 100%);
+  border-color: #ff4757;
+  transform: translateY(-1px) scale(1.05);
+}
+
 .media-count {
   position: absolute;
   left: 0.9rem;

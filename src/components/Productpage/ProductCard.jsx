@@ -1,8 +1,23 @@
-﻿import './Productpage.css';
+﻿import { useContext, useState } from 'react';
+import { WishlistContext } from '../../context/WishlistContext';
+import './Productpage.css';
 
 function ProductCard({ product, hideButton, onProductClick }) {
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
+  const [isFavorited, setIsFavorited] = useState(() => isInWishlist(product.id));
+
   const formattedPrice = product.price.toLocaleString();
   const formattedMonthlyPrice = product.monthlyPrice?.toLocaleString();
+
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation();
+    if (isFavorited) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+    setIsFavorited(!isFavorited);
+  };
 
   const handleCardClick = (e) => {
     // Don't trigger if clicking on action buttons
@@ -29,8 +44,13 @@ function ProductCard({ product, hideButton, onProductClick }) {
         />
 
         <div className="media-actions">
-          <button type="button" className="media-action" aria-label="Favorite">
-            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <button 
+            type="button" 
+            className={`media-action ${isFavorited ? 'favorited' : ''}`}
+            aria-label="Favorite"
+            onClick={handleFavoriteClick}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill={isFavorited ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20.8 4.6c-1.4-1.5-3.6-1.5-5 0l-.8.8-.8-.8c-1.4-1.5-3.6-1.5-5 0-1.4 1.5-1.4 3.9 0 5.4l5.8 6.1 5.8-6.1c1.4-1.5 1.4-3.9 0-5.4Z" />
             </svg>
           </button>

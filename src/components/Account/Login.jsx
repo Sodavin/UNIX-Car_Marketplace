@@ -1,10 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Account.css';
 
 function Login() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('Login successful');
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    if (email === 'unixcar.hl67@gmail.com' && password === '12457878') {
+      navigate('/dashboard');
+    } else {
+      alert('Login successful');
+    }
+    
     event.target.reset();
   };
 
@@ -30,12 +40,12 @@ function Login() {
         <form className="account-form" onSubmit={handleSubmit}>
           <label className="field-group">
             <span>Email</span>
-            <input type="email" placeholder="you@example.com" required />
+            <input type="email" name="email" placeholder="you@example.com" required />
           </label>
 
           <label className="field-group">
             <span>Password</span>
-            <input type="password" placeholder="Enter your password" required />
+            <input type="password" name="password" placeholder="Enter your password" required />
           </label>
 
           <div className="account-form-footer">

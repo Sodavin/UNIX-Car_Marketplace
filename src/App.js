@@ -1,4 +1,4 @@
-﻿import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { WishlistProvider } from './context/WishlistContext';
 import Navbar from './components/Navbar';
@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage';
 import WishlistPage from './components/Wishlist/WishlistPage.jsx';
 import Login from './components/Account/Login';
 import Signup from './components/Account/Signup';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
 
         <Footer />

@@ -1,6 +1,6 @@
 ﻿import './Productpage.css';
 
-function ProductCard({ product, hideButton, onProductClick }) {
+function ProductCard({ product, hideButton, onProductClick, onAddToCart }) {
   const formattedPrice = product.price.toLocaleString();
   const formattedMonthlyPrice = product.monthlyPrice?.toLocaleString();
 
@@ -14,6 +14,10 @@ function ProductCard({ product, hideButton, onProductClick }) {
 
   const handleBuyClick = (e) => {
     e.stopPropagation();
+    if (onAddToCart) {
+      onAddToCart(product);
+      return;
+    }
     if (onProductClick) {
       onProductClick(product);
     }

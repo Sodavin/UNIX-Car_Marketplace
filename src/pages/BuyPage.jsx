@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import '../components/Productpage/Productpage.css';
+import { useCart } from '../components/cart/CartContext';
 import FilterBar from '../components/Productpage/FilterBar';
 import ProductGrid from '../components/Productpage/ProductGrid';
 import ProductDetail from '../components/Productpage/ProductDetail';
@@ -148,6 +149,11 @@ function BuyPage() {
   const [selectedPrice, setSelectedPrice] = useState('all');
   const [selectedSort, setSelectedSort] = useState('Newest');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const { addItem } = useCart();
+
+  const handleAddToCart = (product) => {
+    addItem(product, 1);
+  };
 
   useEffect(() => {
     document.title = 'UNIX | Buy';
@@ -212,7 +218,7 @@ if (selectedProduct) {
           </svg>
           Back to listings
         </button>
-        <ProductDetail product={selectedProduct} />
+        <ProductDetail product={selectedProduct} onAddToCart={handleAddToCart} />
       </main>
     );
   }
@@ -230,7 +236,11 @@ if (selectedProduct) {
           onSortChange={setSelectedSort}
         />
 
-        <ProductGrid products={filteredProducts} onProductClick={setSelectedProduct} />
+        <ProductGrid
+          products={filteredProducts}
+          onProductClick={setSelectedProduct}
+          onAddToCart={handleAddToCart}
+        />
       </section>
     </main>
   );

@@ -1,9 +1,12 @@
 ﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from './cart/CartContext';
 import '../App.css';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { items } = useCart();
+  const cartItemCount = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
   return (
     <header className="site-navbar">
@@ -58,13 +61,14 @@ function Navbar() {
           </div>
         </div>
         
-          <button className="icon-button icon-outline" type="button" aria-label="Cart">
+          <Link to="/checkout" className="icon-button icon-outline cart-link" aria-label="Cart">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
               <path d="M3 3h2l1.7 8.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               <circle cx="10" cy="20" r="1.5" fill="currentColor" />
               <circle cx="18" cy="20" r="1.5" fill="currentColor" />
             </svg>
-          </button>
+            {cartItemCount > 0 && <span className="cart-count-badge">{cartItemCount}</span>}
+          </Link>
       </div>
     </header>
   );

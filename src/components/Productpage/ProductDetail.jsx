@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ProductDetail.css';
 
-function ProductDetail({ product, rentMode = false }) {
+function ProductDetail({ product, rentMode = false, onAddToCart }) {
   const [mainImageIndex, setMainImageIndex] = useState(0);
 
   useEffect(() => {
@@ -114,7 +114,11 @@ function ProductDetail({ product, rentMode = false }) {
                 Request rental
               </button>
             ) : (
-              <button type="button" className="action-button buy-button">
+              <button
+                type="button"
+                className="action-button buy-button"
+                onClick={() => onAddToCart?.(product)}
+              >
                 Buy now
               </button>
             )}

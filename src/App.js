@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage';
 import WishlistPage from './components/Wishlist/WishlistPage.jsx';
 import Login from './components/Account/Login';
 import Signup from './components/Account/Signup';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

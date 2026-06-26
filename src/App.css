@@ -26,6 +26,9 @@ body {
 
 /* Header / Navbar */
 .site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   width: 100%;
   max-width: 1320px;
   margin: 0 auto;
@@ -142,7 +145,7 @@ body {
 .site-footer {
   width:100%;
   max-width:1320px;
-  margin:2.5rem auto 0;
+  margin:0.5rem auto 0;
   padding:3rem 2rem;
   border-radius:20px;
   background: var(--panel);

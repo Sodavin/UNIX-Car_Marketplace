@@ -11,6 +11,7 @@ import RentPage from './pages/RentPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import WishlistPage from './components/Wishlist/WishlistPage.jsx';
+import Checkout from './components/Checkout/Checkout';
 import Login from './components/Account/Login';
 import Signup from './components/Account/Signup';
 import DashboardPage from './pages/DashboardPage';
@@ -23,21 +24,22 @@ function App() {
         <ScrollToTop />
 
         <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/buy" element={<BuyPage />} />
-          <Route path="/rent" element={<RentPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Homepage />} />
+            <Route path="/buy" element={<BuyPage />} />
+            <Route path="/rent" element={<RentPage />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
 
-        <Footer />
-        <BackToTop />
-      </div>
+          <Footer />
+          <BackToTop />
+        </div>
     </WishlistProvider>
   );
 }

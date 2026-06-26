@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useCart } from '../Checkout/Cart';
 import './ProductDetail.css';
 
 function ProductDetail({ product, rentMode = false }) {
@@ -27,7 +28,14 @@ function ProductDetail({ product, rentMode = false }) {
     setMainImageIndex(index);
   };
 
+  const { addItem } = useCart();
   const formattedPrice = product?.price?.toLocaleString();
+
+  const handleCheckoutClick = () => {
+    if (product) {
+      addItem(product, 1);
+    }
+  };
 
   return (
     <div className="product-detail-container">
@@ -110,11 +118,11 @@ function ProductDetail({ product, rentMode = false }) {
             </button>
 
             {rentMode ? (
-              <button type="button" className="action-button request-button">
+              <button type="button" className="action-button request-button" onClick={handleCheckoutClick}>
                 Request rental
               </button>
             ) : (
-              <button type="button" className="action-button buy-button">
+              <button type="button" className="action-button buy-button" onClick={handleCheckoutClick}>
                 Buy now
               </button>
             )}

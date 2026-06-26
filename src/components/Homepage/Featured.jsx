@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../Checkout/Cart';
 import ProductGrid from '../Productpage/ProductGrid';
 import '../Productpage/Productpage.css';
 import './HomepageSections.css';
@@ -72,6 +73,15 @@ const featuredCars = [
 ];
 
 export default function FeaturedCars() {
+  const navigate = useNavigate();
+  const { addItem } = useCart();
+
+  const handleFeaturedCheckout = () => {
+    const product = featuredCars[0];
+    addItem(product, 1);
+    navigate('/checkout');
+  };
+
   return (
     <section className="homepage-section">
       <div className="section-heading">
@@ -79,7 +89,9 @@ export default function FeaturedCars() {
           <h2 className="section-title">Featured Cars</h2>
           <p className="section-copy">Premium listings curated for modern drivers who want style and performance.</p>
         </div>
-        <Link to="/buy" className="section-action">View all</Link>
+        <button type="button" className="section-action" onClick={handleFeaturedCheckout}>
+          Checkout featured
+        </button>
       </div>
 
       <ProductGrid products={featuredCars} hideButton={false} />

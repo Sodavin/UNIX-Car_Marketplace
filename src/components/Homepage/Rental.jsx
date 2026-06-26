@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../Checkout/Cart';
 import ProductGrid from '../Productpage/ProductGrid';
 import '../Productpage/Productpage.css';
 import './HomepageSections.css';
@@ -72,6 +73,15 @@ const rentalCars = [
 ];
 
 export default function RentalCars() {
+  const navigate = useNavigate();
+  const { addItem } = useCart();
+
+  const handleRentalCheckout = () => {
+    const product = rentalCars[0];
+    addItem(product, 1);
+    navigate('/checkout');
+  };
+
   return (
     <section className="homepage-section">
       <div className="section-heading">
@@ -79,7 +89,9 @@ export default function RentalCars() {
           <h2 className="section-title">Rental Fleet</h2>
           <p className="section-copy">Browse premium rental cars with flexible terms and high-end comfort.</p>
         </div>
-        <Link to="/rent" className="section-action">Browse rentals</Link>
+        <button type="button" className="section-action" onClick={handleRentalCheckout}>
+          Checkout rental
+        </button>
       </div>
 
       <ProductGrid products={rentalCars} hideButton={true} />

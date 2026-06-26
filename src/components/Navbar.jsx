@@ -1,11 +1,16 @@
 ﻿import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { WishlistContext } from '../context/WishlistContext';
+import { useCart } from './Checkout/Cart';
+import CartDrawer from './Checkout/CartDrawer';
 import '../App.css';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const { wishlistCount } = useContext(WishlistContext);
+  const { items: cartItems } = useCart();
+  const cartCount = cartItems.reduce((total, item) => total + Number(item.quantity || 1), 0);
 
   return (
     <header className="site-navbar">
@@ -62,14 +67,16 @@ function Navbar() {
           </div>
         </div>
         
-          <button className="icon-button icon-outline" type="button" aria-label="Cart">
+          <button type="button" className="icon-button icon-outline" aria-label="Cart" onClick={() => setDrawerOpen(true)}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
               <path d="M3 3h2l1.7 8.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L21 7H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               <circle cx="10" cy="20" r="1.5" fill="currentColor" />
               <circle cx="18" cy="20" r="1.5" fill="currentColor" />
             </svg>
+            {cartCount > 0 && <span className="wishlist-badge">{cartCount}</span>}
           </button>
       </div>
+      <CartDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </header>
   );
 }

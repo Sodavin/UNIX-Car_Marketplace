@@ -1,9 +1,11 @@
 ﻿import { useContext, useState } from 'react';
 import { WishlistContext } from '../../context/WishlistContext';
+import { useCart } from '../Checkout/Cart';
 import './Productpage.css';
 
 function ProductCard({ product, hideButton, onProductClick }) {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
+  const { addItem } = useCart();
   const [isFavorited, setIsFavorited] = useState(() => isInWishlist(product.id));
 
   const formattedPrice = product.price.toLocaleString();
@@ -29,9 +31,7 @@ function ProductCard({ product, hideButton, onProductClick }) {
 
   const handleBuyClick = (e) => {
     e.stopPropagation();
-    if (onProductClick) {
-      onProductClick(product);
-    }
+    addItem(product, 1);
   };
 
   return (

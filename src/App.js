@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/Backtotop';
 import ScrollToTop from './components/ScrollToTop';
-import Homepage from './pages/Homepage';
+import Homepage from './components/Homepage/Homepage';
 import BuyPage from './pages/BuyPage';
 import RentPage from './pages/RentPage';
 import AboutPage from './pages/AboutPage';
@@ -13,14 +13,12 @@ import ContactPage from './pages/ContactPage';
 import WishlistPage from './components/Wishlist/WishlistPage.jsx';
 import Login from './components/Account/Login';
 import Signup from './components/Account/Signup';
-
 function App() {
   return (
     <WishlistProvider>
       <div className="App">
         <Navbar />
         <ScrollToTop />
-
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Homepage />} />
@@ -31,6 +29,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          
         </Routes>
 
         <Footer />

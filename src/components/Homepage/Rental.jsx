@@ -78,6 +78,10 @@ export default function RentalCars() {
     navigate('/rent');
   };
 
+  const handleProductClick = (product) => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
     <section className="homepage-section">
       <div className="section-heading">
@@ -90,7 +94,7 @@ export default function RentalCars() {
         </button>
       </div>
 
-      <ProductGrid products={rentalCars} hideButton={true} />
+      <ProductGrid products={rentalCars} hideButton={true} onProductClick={handleProductClick} />
     </section>
   );
 }

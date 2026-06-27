@@ -1,6 +1,6 @@
 ﻿import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { WishlistProvider } from './context/WishlistContext';
+import { WishlistProvider } from './components/Wishlist/WishlistContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/Backtotop';
@@ -15,6 +15,7 @@ import Checkout from './components/Checkout/Checkout';
 import Login from './components/Account/Login';
 import Signup from './components/Account/Signup';
 import DashboardPage from './pages/DashboardPage';
+import ProductPage from './pages/ProductPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/home" element={<Homepage />} />
             <Route path="/buy" element={<BuyPage />} />
             <Route path="/rent" element={<RentPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

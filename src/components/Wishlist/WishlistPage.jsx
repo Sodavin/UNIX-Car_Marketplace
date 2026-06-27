@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { WishlistContext } from '../../context/WishlistContext';
+import { WishlistContext } from './WishlistContext';
 import ProductDetail from '../Productpage/ProductDetail';
 import './Wishlist.css';
 

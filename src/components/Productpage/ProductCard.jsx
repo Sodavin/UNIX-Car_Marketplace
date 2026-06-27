@@ -1,5 +1,5 @@
 ﻿import { useContext, useState } from 'react';
-import { WishlistContext } from '../../context/WishlistContext';
+import { WishlistContext } from '../Wishlist/WishlistContext';
 import { useCart } from '../Checkout/Cart';
 import './Productpage.css';
 

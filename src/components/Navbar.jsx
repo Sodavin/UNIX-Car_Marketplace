@@ -1,6 +1,6 @@
 ﻿import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { WishlistContext } from '../context/WishlistContext';
+import { WishlistContext } from './Wishlist/WishlistContext';
 import { useCart } from './Checkout/Cart';
 import CartDrawer from './Checkout/CartDrawer';
 import '../App.css';

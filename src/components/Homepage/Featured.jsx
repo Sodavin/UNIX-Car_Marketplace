@@ -78,6 +78,10 @@ export default function FeaturedCars() {
     navigate('/buy');
   };
 
+  const handleProductClick = (product) => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
     <section className="homepage-section">
       <div className="section-heading">
@@ -90,7 +94,7 @@ export default function FeaturedCars() {
         </button>
       </div>
 
-      <ProductGrid products={featuredCars} hideButton={false} />
+      <ProductGrid products={featuredCars} hideButton={false} onProductClick={handleProductClick} />
     </section>
   );
 }

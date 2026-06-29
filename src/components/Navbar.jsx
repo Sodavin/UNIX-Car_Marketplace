@@ -1,16 +1,18 @@
 ﻿import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { WishlistContext } from './Wishlist/WishlistContext';
 import { useCart } from './Checkout/Cart';
 import CartDrawer from './Checkout/CartDrawer';
 import '../App.css';
 
-function Navbar() {
+function Navbar({ user, onLogout }) {
+  const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { wishlistCount } = useContext(WishlistContext);
   const { items: cartItems } = useCart();
   const cartCount = cartItems.reduce((total, item) => total + Number(item.quantity || 1), 0);
+  const isAdmin = user?.role === 'admin';
 
   return (
     <header className="site-navbar">
@@ -61,9 +63,35 @@ function Navbar() {
           </button>
 
           <div className="account-dropdown">
-            <Link className="dropdown-item" to="/signup">Sign up</Link>
-            <Link className="dropdown-item" to="/login">Login</Link>
-            <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+            {user ? (
+              <>
+                {isAdmin ? (
+                  <Link className="dropdown-item" to="/dashboard" onClick={() => setDropdownOpen(false)}>
+                    Admin Dashboard
+                  </Link>
+                ) : (
+                  <Link className="dropdown-item" to="/user-dashboard" onClick={() => setDropdownOpen(false)}>
+                    User Dashboard
+                  </Link>
+                )}
+                <button
+                  type="button"
+                  className="dropdown-item"
+                  onClick={() => {
+                    onLogout();
+                    setDropdownOpen(false);
+                    navigate('/home');
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link className="dropdown-item" to="/signup" onClick={() => setDropdownOpen(false)}>Sign up</Link>
+                <Link className="dropdown-item" to="/login" onClick={() => setDropdownOpen(false)}>Login</Link>
+              </>
+            )}
           </div>
         </div>
         

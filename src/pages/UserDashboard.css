@@ -1,0 +1,261 @@
+.user-dashboard-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b0c10 0%, #161722 100%);
+  color: #f5f7ff;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.user-dashboard-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.user-dashboard-sidebar {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.sidebar-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+}
+
+.sidebar-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: var(--purple-600, #6b5cff);
+  color: white;
+}
+
+.sidebar-profile-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.sidebar-profile-card p {
+  margin: 0.2rem 0 0;
+  color: #b9c0d3;
+  font-size: 0.92rem;
+}
+
+.sidebar-nav {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sidebar-nav-item {
+  border: none;
+  text-align: left;
+  padding: 0.8rem 0.9rem;
+  border-radius: 12px;
+  background: transparent;
+  color: #f5f7ff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 0.65rem;
+  font-weight: 600;
+}
+
+.sidebar-nav-item span {
+  display: inline-flex;
+  width: 24px;
+  min-width: 24px;
+  justify-content: center;
+}
+
+.sidebar-nav-item.active {
+  background: rgba(107, 92, 255, 0.2);
+  color: #d8d3ff;
+}
+
+.sidebar-cta {
+  display: inline-block;
+  padding: 0.8rem 0.9rem;
+  border-radius: 12px;
+  background: var(--purple-600, #6b5cff);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+}
+
+.user-dashboard-content {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.user-dashboard-hero {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.user-dashboard-title h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.user-dashboard-title p {
+  margin: 0.35rem 0 0;
+  color: #b9c0d3;
+}
+
+.user-dashboard-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.user-dashboard-btn {
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-dashboard-btn.primary {
+  background: var(--purple-600, #6b5cff);
+  color: white;
+}
+
+.user-dashboard-btn.secondary {
+  background: rgba(255,255,255,0.08);
+  color: #f5f7ff;
+}
+
+.user-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.25rem;
+}
+
+.user-dashboard-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.2rem;
+}
+
+.user-dashboard-card h2,
+.user-dashboard-card h3 {
+  margin: 0 0 0.8rem;
+}
+
+.user-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.stat-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 0.95rem;
+}
+
+.stat-box .label {
+  color: #b9c0d3;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat-box .value {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.user-profile-list,
+.user-list,
+.user-notes {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.user-profile-item,
+.user-item,
+.user-note-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+}
+
+.user-item strong,
+.user-profile-item strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.user-item span,
+.user-profile-item span,
+.user-note-item span {
+  color: #b9c0d3;
+  font-size: 0.92rem;
+}
+
+.user-dashboard-section {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.section-copy {
+  margin: 0 0 0.7rem;
+  color: #b9c0d3;
+}
+
+.user-dashboard-link {
+  color: #8f87ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .user-dashboard-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .user-dashboard-sidebar {
+    position: static;
+  }
+
+  .user-dashboard-grid,
+  .user-dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+}

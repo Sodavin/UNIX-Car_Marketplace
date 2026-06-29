@@ -1,11 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Account.css';
 
-function Login() {
+function Login({ onLogin }) {
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('Login successful');
-    event.target.reset();
+    const result = onLogin(formData);
+
+    if (result.success) {
+      navigate(result.role === 'admin' ? '/dashboard' : '/user-dashboard');
+      return;
+    }
+
+    setError(result.message || 'Invalid username or password.');
   };
 
   return (
@@ -29,14 +45,30 @@ function Login() {
 
         <form className="account-form" onSubmit={handleSubmit}>
           <label className="field-group">
-            <span>Email</span>
-            <input type="email" placeholder="you@example.com" required />
+            <span>Username</span>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="admin"
+              required
+            />
           </label>
 
           <label className="field-group">
             <span>Password</span>
-            <input type="password" placeholder="Enter your password" required />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
           </label>
+
+          {error && <p className="text-link" style={{ color: '#ff6b6b' }}>{error}</p>}
 
           <div className="account-form-footer">
             <label className="checkbox-field">
